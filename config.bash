@@ -4,12 +4,12 @@ read folder_path
 count=1
 for folder in $folder_path
 do
-    echo "BACKUP_FOLDER$count=$folder" | tee -a config.txt
+    echo "BACKUP_FOLDER$count=$folder" | tee -a config.txt > /dev/null
     ((count++))
 done
 echo -n "Enter path of backup file location: "
 read backup_path
-echo "BACKUP_FILE_PATH=$backup_path" | tee -a config.txt
+echo "BACKUP_FILE_PATH=$backup_path" | tee -a config.txt > /dev/null
 echo -n "What time do you prefer for backup (daily, weekly, monthly, yearly): "
 read backup_time
 case $backup_time in
@@ -30,6 +30,6 @@ case $backup_time in
         exit 1
         ;;
 esac
-echo "BACKUP_TIME=$backup_time" | tee -a config.txt
-# (crontab -l 2>/dev/null; echo "$CRON_CMD") | crontab -
+echo "BACKUP_TIME=$backup_time" | tee -a config.txt > /dev/null
+(crontab -l 2>/dev/null; echo "$CRON_CMD") | crontab -
 echo "Backup scheduled successfully: $backup_time"
