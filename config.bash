@@ -22,6 +22,7 @@ case "$frequency" in
     yearly)  CRON_SCHEDULE="0 0 1 1 *" ;;
     *) echo "ERROR: Invalid Frequency Input" ;;
 esac
-CRON_JOB="$CRON_SCHEDULE /bin/bash $(pwd)/backup.bash >> $(pwd)/cron.log"
+CRON_JOB="$CRON_SCHEDULE /bin/bash $(pwd)/backup.bash 2>> $(pwd)/cron.log 2>&1
+@reboot /bin/bash $(pwd)/backup.bash 2>> $(pwd)/cron.log "
 (crontab -l 2>/dev/null; echo "$CRON_JOB") | crontab -
-echo "Cron job added: $CRON_JOB"
+echo "Cron job added successfully"

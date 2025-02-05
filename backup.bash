@@ -22,6 +22,6 @@ for item in "${FILE_ARRAY[@]}"; do
         echo "Warning: $item not found" | tee -a "$LOG_FILE"
     fi
 done
-zip -r "$ZIP_FILE" "$BACKUP_DIR" 2>> "$LOG_FILE" 
+zip -r "$ZIP_FILE" "$BACKUP_DIR" 2>> "$LOG_FILE"
 rm -rf "$BACKUP_DIR"
 echo "Backup completed successfully at $TIMESTAMP" | tee -a "$LOG_FILE"
